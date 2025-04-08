@@ -2642,6 +2642,10 @@ Header Styles
     padding-left: 25px;
     padding-right: 25px;
 }
+.header__area .header__sidebar__right > li.wishlist2 {
+    padding-left: 25px;
+    padding-right: 25px;
+}
 
 .header__area .header__sidebar__right > li.shopcart > a {
     position: relative;
@@ -2739,6 +2743,11 @@ Header Styles
 
 .is-sticky.header__area .header__sidebar__right > li.wishlist > a {
     background: rgba(0, 0, 0, 0) url("../images/icons/button-wishlist_white.png") no-repeat scroll 0 center;
+}
+.is-sticky.header__area .header__sidebar__right > li.wishlist2 > a {
+    background: rgba(0, 0, 0, 0)  no-repeat scroll 0 center;
+    /* background: red; */
+    color: white;
 }
 
 .is-sticky.header__area .header__sidebar__right > li.shopcart > a {
@@ -8611,6 +8620,10 @@ a.checkout__title {
 
 .list__view .content .cart__action li.wishlist a {
     background: white url("../images/icons/wishlist.png") no-repeat scroll -6% 0;
+}
+.list__view .content .cart__action li.wishlist2 a {
+    background: white  no-repeat scroll -6% 0;
+    color: white;
 }
 
 .list__view .content .cart__action li.wishlist a:hover {
