@@ -9107,3 +9107,25 @@ a.checkout__title {
 .prefArea__block .prefArea__box input::placeholder{
     color: #ED1D24;
 }
+
+
+
+.continuous-carousel .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* optional spacing */
+  }
+  
+  .continuous-carousel .item img {
+    width: 100%;
+    height: 150px;      /* set fixed height */
+    object-fit: contain; /* keep image aspect ratio inside box */
+  }
+
+  @media (max-width: 768px) {
+    .continuous-carousel .item img {
+      width: 70%;
+      height:auto;
+    }
+  }
