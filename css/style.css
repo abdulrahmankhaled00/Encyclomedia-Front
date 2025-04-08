@@ -19,7 +19,7 @@
     testimonial
     product
     shop-colection
-    newsletter
+    prefArea
     slider
     look-book
     brand
@@ -666,7 +666,7 @@ a {
     transition: 0.3s;
 }
 
-.h-3 .newsletter__block .newsletter__box input{
+.h-3 .prefArea__block .prefArea__box input{
     color: #fff;
 }
 .tab-content {
@@ -1468,7 +1468,7 @@ Elements Styles
 }
 
 .section__title h2 {
-    color: #333;
+    color: #ED1D24;
     display: block;
     font-size: 30px;
     font-weight: 700;
@@ -1484,7 +1484,7 @@ Elements Styles
     }
 }
 
-.wn__newsletter__area .section__title > h2 {
+.wn__prefArea__area .section__title > h2 {
     letter-spacing: 2px;
 }
 
@@ -4227,20 +4227,21 @@ h3.widget-title-modal {
 }
 
 /*--------------------------
-  Newsletter Styles
+  prefArea Styles
 ----------------------------*/
-.newsletter__block {
+.prefArea__block {
     margin-top: 20px;
 }
 
-.newsletter__block p {
+.prefArea__block p {
     color: #333;
     font-size: 14px;
     line-height: 25px;
-    padding: 0 60px 60px;
+    /* padding: 0 60px 60px; */
+    
 }
 
-.newsletter__block .newsletter__box {
+.prefArea__block .prefArea__box {
     display: inline-block;
     margin-top: 5px;
     max-width: 470px;
@@ -4248,7 +4249,7 @@ h3.widget-title-modal {
     width: 100%;
 }
 
-.newsletter__block .newsletter__box input {
+.prefArea__block .prefArea__box input {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
@@ -4259,7 +4260,7 @@ h3.widget-title-modal {
     border-radius: 0;
     border-style: none none solid;
     border-width: 0 0 1px;
-    color: #333;
+    color: white;
     display: inline-block;
     font-size: 12px;
     height: 50px;
@@ -4267,12 +4268,14 @@ h3.widget-title-modal {
     outline: medium none;
     padding: 10px 145px 10px 15px;
     width: 100%;
+    
 }
 
-.newsletter__block .newsletter__box button {
+
+.prefArea__block .prefArea__box button {
     background: transparent none repeat scroll 0 0;
     border: medium none;
-    color: #333;
+    color: white;
     display: inline-block;
     font-size: 14px;
     font-weight: 700;
@@ -4289,36 +4292,36 @@ h3.widget-title-modal {
     transition: all 300ms ease-in 0s;
 }
 
-.newsletter__block .newsletter__box button:hover {
+.prefArea__block .prefArea__box button:hover {
     color: #ED1D24;
 }
 
-.newsletter__yellow .newsletter__block .newsletter__box button {
+.prefArea__yellow .prefArea__block .prefArea__box button {
     background: #2e2e2e none repeat scroll 0 0;
     border: 1px solid #2e2e2e;
 }
 
-.newsletter__yellow .newsletter__block .newsletter__box button:hover {
+.prefArea__yellow .prefArea__block .prefArea__box button:hover {
     background: #ffa800 none repeat scroll 0 0;
     border: 1px solid #ffa800;
 }
 
-.brown--color .newsletter__block .newsletter__box button {
+.brown--color .prefArea__block .prefArea__box button {
     background: #2e2e2e none repeat scroll 0 0;
     border: 1px solid #2e2e2e;
 }
 
-.brown--color .newsletter__block .newsletter__box button:hover {
+.brown--color .prefArea__block .prefArea__box button:hover {
     background: #ED1D24 none repeat scroll 0 0;
     border: 1px solid #ED1D24;
 }
 
-.color--pink .newsletter__block .newsletter__box button {
+.color--pink .prefArea__block .prefArea__box button {
     background: #2e2e2e none repeat scroll 0 0;
     border: 1px solid #2e2e2e;
 }
 
-.color--pink .newsletter__block .newsletter__box button:hover {
+.color--pink .prefArea__block .prefArea__box button:hover {
     background: #da7187 none repeat scroll 0 0;
     border: 1px solid #da7187;
 }
@@ -4331,25 +4334,25 @@ h3.widget-title-modal {
 }
 
 @media only screen and (max-width: 767px) {
-    .newsletter__block p {
+    .prefArea__block p {
         color: #000;
     }
 
-    .newsletter--bg.newsletter--bg--10 {
+    .prefArea--bg.prefArea--bg--10 {
         padding: 95px 0;
     }
 
-    .newsletter__block .newsletter__box input {
+    .prefArea__block .prefArea__box input {
         padding: 10px 98px 10px 10px;
     }
 }
 
 @media only screen and (max-width: 575px) {
-    .newsletter__block {
+    .prefArea__block {
         margin-top: 30px;
     }
 
-    .newsletter__block .newsletter__box button {
+    .prefArea__block .prefArea__box button {
         font-size: 12px;
         padding: 0 10px;
     }
@@ -4848,19 +4851,19 @@ h3.widget-title-modal {
         padding-right: 10px;
     }
 
-    .newsletter__block p {
+    .prefArea__block p {
         padding: 0 50px 60px;
     }
 
-    .wn__newsletter__area.bg-image--2 {
+    .wn__prefArea__area.bg-image--2 {
         background: #f6f6f6 none repeat scroll 0 0;
     }
 
-    .newsletter__block .newsletter__box {
+    .prefArea__block .prefArea__box {
         max-width: 280px;
     }
 
-    .wn__newsletter__area .col-lg-7.offset-lg-5.col-md-12.col-12 {
+    .wn__prefArea__area .col-lg-7.offset-lg-5.col-md-12.col-12 {
         padding-bottom: 80px;
         padding-top: 80px;
     }
@@ -5688,7 +5691,7 @@ h3.widget-title-modal {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .wn__newsletter__area .col-lg-7.offset-lg-5.col-md-12.col-12 {
+    .wn__prefArea__area .col-lg-7.offset-lg-5.col-md-12.col-12 {
         padding: 80px 0;
     }
 
@@ -8743,7 +8746,7 @@ a.checkout__title {
         margin-right: 30px;
     }
 
-    .wn__newsletter__area .col-lg-7.offset-lg-5.col-md-12.col-12 {
+    .wn__prefArea__area .col-lg-7.offset-lg-5.col-md-12.col-12 {
         padding: 80px 0;
     }
 
@@ -8764,7 +8767,7 @@ a.checkout__title {
         padding-right: 15px;
     }
 
-    .wn__newsletter__area.bg-image--2 {
+    .wn__prefArea__area.bg-image--2 {
         background: #f6f6f6;
     }
 }
@@ -9080,4 +9083,27 @@ a.checkout__title {
 
 /*===============================================================================
       [ custom style]
-=================================================================================
+=================================================================================*/
+
+.pref-bg{
+    background-image: url(../assets/images/pref/pref-bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.pref-shadow{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+.prefArea__block .prefArea__box input::placeholder{
+    color: #ED1D24;
+}
