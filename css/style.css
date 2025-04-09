@@ -9344,3 +9344,7 @@ a.checkout__title {
     background-color: black;
   }
   
+  /* product detail  */
+  .fotorama__nav-wrap{
+    margin-top: 20px;
+  }
