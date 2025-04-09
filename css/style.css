@@ -9191,9 +9191,14 @@ a.checkout__title {
 }
 @media (max-width:768px){
     .title-shape{
-        left: 35%;
+        left: 34%;
+    }
+    .header__area .header__sidebar__right > li.wishlist2 {
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
+
 
 .title-shape .shape {
     display: block;
