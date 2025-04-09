@@ -1156,7 +1156,7 @@ a {
 
 /* Height and width */
 .fullscreen {
-    min-height: 85vh;
+    min-height: 60vh;
     width: 100%;
 }
 
@@ -9100,6 +9100,8 @@ a.checkout__title {
 /*===============================================================================
       [ custom style]
 =================================================================================*/
+
+/* home page  */
     .custom-width-md {
       max-height: 75%;
       min-height: 40px;
@@ -9149,5 +9151,11 @@ a.checkout__title {
     .continuous-carousel .item img {
       width: 70%;
       height:auto;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .slider-height{
+        height: 100vh;
     }
   }
