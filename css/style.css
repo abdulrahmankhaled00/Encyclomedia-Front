@@ -9159,3 +9159,77 @@ a.checkout__title {
         height: 100vh;
     }
   }
+  .swin-btn {
+    min-width: 150px;
+    border: 1px solid #a9a9a9;
+    padding: 10px 30px;
+    font-size: 15px;
+    color: #343434;
+    font-weight: 700;
+    text-transform: capitalize;
+    opacity: 1;
+    position: relative;
+
+}
+.swin-btn:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 30px;
+    height: 1px;
+    background-color: #a9a9a9;
+    left: auto;
+    top: 50%;
+    right: -10px;
+}
+
+.title-shape {
+    position: absolute;
+    width: 138px;
+    border-bottom: 1px solid #ED1D24;
+    top: -25%;
+}
+@media (max-width:768px){
+    .title-shape{
+        left: 35%;
+    }
+}
+
+.title-shape .shape {
+    display: block;
+    width: 138px;
+    position: relative;
+    left: 0;
+    top: -15px;
+}
+
+.title-shape .shape:before {
+    content: '';
+    position: absolute;
+    width: 130px;
+    left: -30px;
+    top: 70px;
+    border-bottom: 1px solid #ED1D24;
+    transform: rotate(58deg);
+}
+
+.title-shape .shape:after {
+    content: '';
+    position: absolute;
+    width: 130px;
+    left: 40px;
+    top: 70px;
+    border-bottom: 1px solid #ED1D24;
+    transform: rotate(-58deg);
+}
+
+.responsive-text {
+    text-align: center;
+  }
+
+  /* Align text to the left on screens wider than 768px */
+  @media (min-width: 768px) {
+    .responsive-text {
+      text-align: left;
+    }
+  }
