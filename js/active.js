@@ -241,7 +241,7 @@
         dots: false,
         responsive:{
             0:{
-              items:1
+              items:3
             },
             576:{
               items:2
@@ -274,7 +274,7 @@
       lazyLoad: true,
       responsive: {
         0: {
-          items: 1
+          items: 2
         },
         576: {
           items: 2
@@ -550,7 +550,7 @@
 		  settings: {
 			arrows: false,
 			centerMode: true,
-			slidesToShow: 1
+			slidesToShow: 3
 		  }
 		}
 	  ]
