@@ -9255,7 +9255,7 @@ a.checkout__title {
   }
 
 
-  /* books and magazine  */
+  /* book  */
 
   .book-titel{
     display: -webkit-box;
@@ -9314,3 +9314,33 @@ a.checkout__title {
             justify-content: center;
         }
       }
+        /*  magazine  */
+/* Center pagination */
+#grid-pagination-buttons {
+    margin-top: 20px;
+  }
+  
+  .pagination-btn {
+    background: none;
+    border: none;
+    margin: 0 8px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #555;
+    position: relative;
+  }
+  
+  .pagination-btn:hover,
+  .pagination-btn.active {
+    color: black;
+  }
+  
+  .pagination-btn.active::after {
+    content: '';
+    display: block;
+    margin: 4px auto 0;
+    width: 16px;
+    height: 2px;
+    background-color: black;
+  }
+  
