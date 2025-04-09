@@ -604,3 +604,160 @@
           }
       ]
   });
+
+//// pagentaion 
+
+const products = [
+  {
+    image: "assets/images/books/page/1.jpg",
+    title: "How Management Works: The Concepts Visually Explained",
+    price: "$35",
+    oldPrice: "$220.00",
+    link: "porduct-details.html",
+    description: "Discover everything you need to know to improve your management skills..."
+  },
+  {
+    image: "assets/images/books/page/2.jpg",
+    title: "How to Start Your Own Business: And Make it Work",
+    price: "$35",
+    oldPrice: "$220.00",
+    link: "porduct-details.html",
+    description: "Discover everything you need to know to turn your big idea into a thriving business..."
+  },
+    {
+    image: "assets/images/books/page/2.jpg",
+    title: "How to Start Your Own Business: And Make it Work",
+    price: "$35",
+    oldPrice: "$220.00",
+    link: "porduct-details.html",
+    description: "Discover everything you need to know to turn your big idea into a thriving business..."
+  },
+  {
+    image: "assets/images/books/page/1.jpg",
+    title: "How Management Works: The Concepts Visually Explained",
+    price: "$35",
+    oldPrice: "$220.00",
+    link: "porduct-details.html",
+    description: "Discover everything you need to know to improve your management skills..."
+  },
+    {
+    image: "assets/images/books/page/2.jpg",
+    title: "How to Start Your Own Business: And Make it Work",
+    price: "$35",
+    oldPrice: "$220.00",
+    link: "porduct-details.html",
+    description: "Discover everything you need to know to turn your big idea into a thriving business..."
+  },
+  {
+    image: "assets/images/books/page/1.jpg",
+    title: "How Management Works: The Concepts Visually Explained",
+    price: "$35",
+    oldPrice: "$220.00",
+    link: "porduct-details.html",
+    description: "Discover everything you need to know to improve your management skills..."
+  },
+    {
+    image: "assets/images/books/page/2.jpg",
+    title: "How to Start Your Own Business: And Make it Work",
+    price: "$35",
+    oldPrice: "$220.00",
+    link: "porduct-details.html",
+    description: "Discover everything you need to know to turn your big idea into a thriving business..."
+  },
+  {
+    image: "assets/images/books/page/1.jpg",
+    title: "How Management Works: The Concepts Visually Explained",
+    price: "$35",
+    oldPrice: "$220.00",
+    link: "porduct-details.html",
+    description: "Discover everything you need to know to improve your management skills..."
+  },
+    {
+    image: "assets/images/books/page/2.jpg",
+    title: "How to Start Your Own Business: And Make it Work",
+    price: "$35",
+    oldPrice: "$220.00",
+    link: "porduct-details.html",
+    description: "Discover everything you need to know to turn your big idea into a thriving business..."
+  },
+  {
+    image: "assets/images/books/page/1.jpg",
+    title: "How Management Works: The Concepts Visually Explained",
+    price: "$35",
+    oldPrice: "$220.00",
+    link: "porduct-details.html",
+    description: "Discover everything you need to know to improve your management skills..."
+  },
+
+];
+
+const wrapper = document.querySelector(".list__view__wrapper");
+const pagination = document.getElementById("pagination-buttons");
+const itemsPerPage = 5;
+let currentPage = 1;
+
+function renderProducts() {
+  wrapper.innerHTML = "";
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const current = products.slice(start, end);
+
+  current.forEach((product, index) => {
+    const bgClass = index % 2 === 1 ? '' : 'bg--gray'; // apply bg--gray on odd index
+
+    wrapper.innerHTML += `
+      <div class="list__view mb--40 py-4 ${bgClass}">
+        <div class="thumb">
+          <a class="first__img" href="${product.link}">
+            <img src="${product.image}" alt="product images">
+          </a>
+        </div>
+        <div class="content d-flex flex-column justify-content-center">
+          <h2><a href="${product.link}" class="book-titel">${product.title}</a></h2>
+          <ul class="price__box">
+            <li>${product.price}</li>
+            <li class="old__price">${product.oldPrice}</li>
+          </ul>
+          <p class="book-disc">${product.description}</p>
+          <ul class="cart__action d-flex">
+            <li class="cart"><a href="${product.link}">Add to cart</a></li>
+          </ul>
+        </div>
+      </div>
+    `;
+  });
+}
+
+
+function renderPagination() {
+  pagination.innerHTML = "";
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+    btn.textContent = i;
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      renderProducts();
+      renderPagination();
+    });
+    pagination.appendChild(btn);
+  }
+
+  // Optional: Add next arrow
+  if (currentPage < totalPages) {
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "pagination-btn";
+    nextBtn.textContent = "›";
+    nextBtn.addEventListener("click", () => {
+      currentPage++;
+      renderProducts();
+      renderPagination();
+    });
+    pagination.appendChild(nextBtn);
+  }
+}
+
+renderProducts();
+renderPagination();
