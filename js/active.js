@@ -935,3 +935,62 @@ if (gridWrapper) {
   renderGridProducts();
   renderGridPagination();
 }
+
+
+/// cart 
+
+    // Disable quantity inputs on load
+    $('.product-quantity input').prop('disabled', true);
+
+    // Hide delete column header and content on load
+    $('.delete-item-header, .delete-item-content').hide();
+
+    // When "Update Cart" is clicked
+    $('#update-cart').on('click', function (e) {
+        e.preventDefault();
+
+        // Enable quantity inputs
+        $('.product-quantity input').prop('disabled', false);
+
+        // Show delete column
+        $('.delete-item-header, .delete-item-content').show();
+    });
+
+    // Live update subtotal and totals when quantity changes
+    $('.product-quantity input').on('input', function () {
+        const $row = $(this).closest('tr');
+        const quantity = parseInt($(this).val()) || 0;
+        const priceText = $row.find('.product-price .amount').text().replace('$', '');
+        const price = parseFloat(priceText) || 0;
+        const subtotal = quantity * price;
+
+        // Update subtotal
+        $row.find('.product-subtotal').text(`$${subtotal.toFixed(2)}`);
+
+        // Recalculate totals
+        updateTotals();
+    });
+
+    // Remove row when "X" is clicked
+    $('.delete-item-content a').on('click', function (e) {
+        e.preventDefault();
+        $(this).closest('tr').remove();
+        updateTotals();
+    });
+
+    // Function to recalculate totals
+    function updateTotals() {
+        let total = 0;
+        $('.product-subtotal').each(function () {
+            const value = parseFloat($(this).text().replace('$', '')) || 0;
+            total += value;
+        });
+
+        // Update all total values in the same structure you already have
+        $('.cart__total__tk li').eq(0).text(`$${total.toFixed(2)}`);
+        $('.cart__total__tk li').eq(1).text(`$${total.toFixed(2)}`);
+        $('.cart__total__amount span').eq(1).text(`$${total.toFixed(2)}`);
+    }
+
+    // Initial total calc
+    updateTotals();
