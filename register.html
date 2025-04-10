@@ -362,7 +362,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__inner text-center">
-                        <h2 class="breadcrumb-title">Login</h2>
+                        <h2 class="breadcrumb-title">Register</h2>
 
                     </div>
                 </div>
@@ -376,29 +376,63 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-6 col-12">
                     <div class="my__account__wrapper">
-                        <h3 class="account__title text-center">Login</h3>
-                        <form action="#">
+                        <h3 class="account__title text-center">Register</h3>
                             <div class="account__form">
-                                <div class="input__box">
-                                    <label>Username or email address <span>*</span></label>
-                                    <input type="text" placeholder="Email or Username" required>
-                                </div>
-                                <div class="input__box">
-                                    <label>Password<span>*</span></label>
-                                    <input type="password" placeholder="password" required >
-                                    <a class="forget_pass" href="forgetPassword.html">Lost your password?</a>
-
-                                </div>
-                                <div class="form__btn">
-                                    <button >Login</button>
-                                    <label class="label-for-checkbox">
-                                        <input id="rememberme" class="input-checkbox" name="rememberme" value="forever" type="checkbox" >
-                                        <span>Remember me</span>
-                                    </label>
-                                </div>
-                                <a class="forget_pass" href="register.html">Create account</a>
+                                <form id="billingForm" novalidate>
+                                    <div class="customer_details">
+                                        <h3>Billing details</h3>
+                                        <div class="customar__field">
+                                            <div class="margin_between">
+                                                <div class="input_box space_between">
+                                                    <label>First name <span>*</span></label>
+                                                    <input type="text" name="firstName" placeholder="Enter your first name" required>
+                                                    <small class="error-msg" style="color: red; display: none;">First name is required.</small>
+                                                </div>
+                                                <div class="input_box space_between">
+                                                    <label>Last name <span>*</span></label>
+                                                    <input type="text" name="lastName" placeholder="Enter your last name" required>
+                                                    <small class="error-msg" style="color: red; display: none;">Last name is required.</small>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="input_box">
+                                                <label>Email address <span>*</span></label>
+                                                <input type="email" name="email" placeholder="Enter your email address" required>
+                                                <small class="error-msg" style="color: red; display: none;">Valid email is required.</small>
+                                            </div>
+                                
+                                            <div class="input_box">
+                                                <label>Address <span>*</span></label>
+                                                <input type="text" name="address" placeholder="Enter your street address" required>
+                                                <small class="error-msg" style="color: red; display: none;">Address is required.</small>
+                                            </div>
+                                
+                                            <div class="input_box">
+                                                <label>Phone <span>*</span></label>
+                                                <input type="tel" name="phone" placeholder="Enter your phone number" required pattern="[0-9]{10,}">
+                                                <small class="error-msg" style="color: red; display: none;">Phone must be at least 10 digits.</small>
+                                            </div>
+                                
+                                            <div class="input_box">
+                                                <label>Password <span>*</span></label>
+                                                <input type="password" name="Password" placeholder="Enter your password" required>
+                                                <small class="error-msg" style="color: red; display: none;">Password is required.</small>
+                                            </div>
+                                            <div class="input_box">
+                                                <label>Re-enter Password <span>*</span></label>
+                                                <input type="password" name="rePassword" placeholder="Re-enter your password" required>
+                                                <small class="error-msg" style="color: red; display: none;">Passwords must match.</small>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="form__btn">
+                                            <button>Register</button>
+                                            <a class="forget_pass" href="login.html">Already have an account?</a>
+                                        </div>
+                                    </div>
+                                </form>
+                                
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
