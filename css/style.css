@@ -8056,7 +8056,7 @@ p.form-messege.success{
 }
 
 .create__account .account__field label {
-    color: #a00;
+    /* color: #a00; */
     margin: 0 0 5px;
     display: block;
     font-size: 12px;
@@ -8068,7 +8068,7 @@ p.form-messege.success{
 }
 
 .create__account .account__field input {
-    border: 1px solid #a00;
+    /* border: 1px solid #a00; */
     height: 40px;
     width: 100%;
     padding: 0 10px;

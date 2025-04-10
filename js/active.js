@@ -994,3 +994,48 @@ if (gridWrapper) {
 
     // Initial total calc
     updateTotals();
+
+
+    // checkout 
+
+    const form = document.getElementById('billingForm');
+    const shipToggle = document.getElementById('shipToggle');
+    const differentAddressField = document.getElementById('differentAddressField');
+    const differentAddressInput = differentAddressField.querySelector('input');
+
+    shipToggle.addEventListener('change', function () {
+        if (this.checked) {
+            differentAddressField.style.display = 'block';
+            differentAddressInput.setAttribute('required', 'required');
+        } else {
+            differentAddressField.style.display = 'none';
+            differentAddressInput.removeAttribute('required');
+            differentAddressInput.nextElementSibling.style.display = 'none';
+        }
+    });
+
+    form.addEventListener('submit', function (e) {
+        let isValid = true;
+        
+        const inputs = form.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            const errorMsg = input.nextElementSibling;
+            if (!input.checkValidity()) {
+                errorMsg.style.display = 'block';
+                isValid = false;
+            } else {
+                errorMsg.style.display = 'none';
+            }
+
+            // Special pattern validation
+            if (input.name === "phone" && input.value !== "" && !/^\d{10,}$/.test(input.value)) {
+                errorMsg.textContent = "Phone must be at least 10 digits.";
+                errorMsg.style.display = 'block';
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
