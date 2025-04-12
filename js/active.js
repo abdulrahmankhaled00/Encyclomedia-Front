@@ -998,7 +998,7 @@ if (gridWrapper) {
 
     // checkout 
 
-    const form = document.getElementById('billingForm');
+    const checkoutForm = document.getElementById('billingForm');
     const shipToggle = document.getElementById('shipToggle');
     const differentAddressField = document.getElementById('differentAddressField');
     if(differentAddressField){
@@ -1016,8 +1016,8 @@ if (gridWrapper) {
       });
     }
 
-
-    form.addEventListener('submit', function (e) {
+    if(checkoutForm){
+      checkoutForm.addEventListener('submit', function (e) {
         let isValid = true;
         
         const inputs = form.querySelectorAll('input, select');
@@ -1042,44 +1042,69 @@ if (gridWrapper) {
             e.preventDefault();
         }
     });
+    }
 
     // register 
-
-    const registerForm = document.getElementById('billingForm');
-
-registerForm.addEventListener('submit', function (e) {
-    let isValid = true;
-
-    const inputs = registerForm.querySelectorAll('input, select');
-    inputs.forEach(input => {
-        const errorMsg = input.nextElementSibling;
-
-        // Check overall validity
-        if (!input.checkValidity()) {
-            errorMsg.style.display = 'block';
-            isValid = false;
-        } else {
-            errorMsg.style.display = 'none';
-        }
-
-        // Special phone number pattern validation
-        if (input.name === "phone" && input.value !== "" && !/^\d{10,}$/.test(input.value)) {
-            errorMsg.textContent = "Phone must be at least 10 digits.";
-            errorMsg.style.display = 'block';
-            isValid = false;
-        }
-
-        // Check if passwords match
-        if (input.name === "rePassword" && registerForm.password.value !== input.value) {
-          console.log('heriiii');
-          
-            errorMsg.textContent = "Passwords must match.";
-            errorMsg.style.display = 'block';
-            isValid = false;
-        }
-    });
-
-    if (!isValid) {
-        e.preventDefault();
-    }
-});
+    $(document).ready(function () {
+      // Initialize intl-tel-input first
+      const input = $("#mobile")[0];
+      const iti = window.intlTelInput(input, {
+          initialCountry: "auto",
+          geoIpLookup: callback => {
+              fetch("https://ipapi.co/json")
+                  .then(res => res.json())
+                  .then(data => callback(data.country_code))
+                  .catch(() => callback("us"));
+          },
+          utilsScript: "js/vendor/utils.js",
+          separateDialCode: true // This shows the country code separately
+      });
+  
+      $('#registerForm').on('submit', function (e) {
+          e.preventDefault();
+          let isValid = true;
+  
+          // Loop through each input and validate
+          $('input').each(function () {
+              let input = $(this);
+              let errorMsg = input.siblings('.error-msg');
+  
+              // Reset error message display
+              errorMsg.hide();
+  
+              // Overall input validity
+              if (!input[0].checkValidity()) {
+                  errorMsg.show();
+                  isValid = false;
+              }
+  
+              // Special validation for mobile phone number
+              if (input.attr('name') === 'mobileNumber') {
+                  const isPhoneValid = iti.isValidNumber();
+                  
+                  if (!isPhoneValid) {
+                      errorMsg.text("Please enter a valid phone number.").show();
+                      isValid = false;
+                  } else {
+                      // Update the input value with the full international number
+                      input.val(iti.getNumber()); // Merge country code with the number
+                  }
+              }
+  
+              // Password match validation
+              if (input.attr('name') === 'rePassword') {
+                  const password = $('input[name="Password"]').val();
+                  if (password !== input.val()) {
+                      errorMsg.text("Passwords must match.").show();
+                      isValid = false;
+                  }
+              }
+          });
+  
+          if (isValid) {
+              // Submit the form, including the full international phone number
+              this.submit();
+          }
+      });
+  });
+  

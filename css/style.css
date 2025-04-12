@@ -9348,3 +9348,20 @@ a.checkout__title {
   .fotorama__nav-wrap{
     margin-top: 20px;
   }
+
+  
+  /* register  */
+
+  .iti{
+    width: 100%;
+  }
+
+  @media (min-width: 768px){
+    .iti--fullscreen-popup .iti__dropdown-content{
+        width: 50% !important;
+        margin: auto;
+    }
+  }
+  .iti__search-input{
+    padding: 15px 0px;
+  }

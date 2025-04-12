@@ -25,3 +25,8 @@
 .row {
     --bs-gutter-x: 30px;
   }
+
+  /* flags  */
+  .iti__flag {
+    background-image: url("flags/flags.png");
+  }

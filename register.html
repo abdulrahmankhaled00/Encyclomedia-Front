@@ -313,7 +313,7 @@
                     <div class="my__account__wrapper">
                         <h3 class="account__title text-center">Register</h3>
                             <div class="account__form">
-                                <form id="billingForm" novalidate>
+                                <form id="registerForm" novalidate>
                                     <div class="customer_details">
                                         <h3>Billing details</h3>
                                         <div class="customar__field">
@@ -343,9 +343,9 @@
                                             </div>
                                 
                                             <div class="input_box">
-                                                <label>Phone <span>*</span></label>
-                                                <input type="tel" name="phone" placeholder="Enter your phone number" required pattern="[0-9]{10,}">
-                                                <small class="error-msg" style="color: red; display: none;">Phone must be at least 10 digits.</small>
+                                                <label>Mobile <span>*</span></label>
+                                                <input id="mobile" type="tel" name="mobile" placeholder="Enter phone number" required />
+                                                <small class="error-msg" style="color: red; display: none;">Mobile must be at least 10 digits.</small>
                                             </div>
                                 
                                             <div class="input_box">
@@ -353,6 +353,7 @@
                                                 <input type="password" name="Password" placeholder="Enter your password" required>
                                                 <small class="error-msg" style="color: red; display: none;">Password is required.</small>
                                             </div>
+                                
                                             <div class="input_box">
                                                 <label>Re-enter Password <span>*</span></label>
                                                 <input type="password" name="rePassword" placeholder="Re-enter your password" required>
@@ -361,11 +362,12 @@
                                         </div>
                                 
                                         <div class="form__btn">
-                                            <button>Register</button>
+                                            <button type="submit">Register</button>
                                             <a class="forget_pass" href="login.html">Already have an account?</a>
                                         </div>
                                     </div>
                                 </form>
+                                
                                 
                             </div>
                     </div>
@@ -421,6 +423,8 @@
 <!-- //Main wrapper -->
 
 <!-- JS Files -->
+<script src="js/vendor/intlTelInput.min.js"></script>
+<script  src="js/vendor/utils.js"></script>
 <script src="js/vendor/jquery.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
