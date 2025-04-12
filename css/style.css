@@ -7537,7 +7537,7 @@ p.form-messege.success{
     font-weight: normal;
     height: 40px;
     padding: 0 5px 0 10px;
-    width: 60px;
+    width: 30px;
 }
 
 .table-content table td.product-subtotal {
@@ -9365,3 +9365,47 @@ a.checkout__title {
   .iti__search-input{
     padding: 15px 0px;
   }
+
+  /* counter in cart and , and product details  */
+  .counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .counter-btn-decrease{
+    position: absolute;
+    top: 16%;
+    left: 5%;
+    background-color: transparent;
+    border-color: transparent;
+  }
+  .counter-btn-increase{
+    position: absolute;
+    top: 18%;
+    right: 19%;
+    background-color: transparent;
+    border-color: transparent;
+  }
+  
+.cart-quantity-btn{
+    background-color: transparent;
+    border-color: transparent;
+    text-align: center;
+    width: 20px !important;
+    font-size: 15px;
+}
+
+/* Hide number input arrows in modern browsers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

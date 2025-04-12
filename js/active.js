@@ -936,175 +936,234 @@ if (gridWrapper) {
   renderGridPagination();
 }
 
+  /// cart
+  // Disable quantity inputs on load
+  $(".product-quantity input").prop("disabled", true);
 
-/// cart 
-
-    // Disable quantity inputs on load
-    $('.product-quantity input').prop('disabled', true);
-
-    // Hide delete column header and content on load
-    $('.delete-item-header, .delete-item-content').hide();
-
-    // When "Update Cart" is clicked
-    $('#update-cart').on('click', function (e) {
-        e.preventDefault();
-
-        // Enable quantity inputs
-        $('.product-quantity input').prop('disabled', false);
-
-        // Show delete column
-        $('.delete-item-header, .delete-item-content').show();
-    });
-
-    // Live update subtotal and totals when quantity changes
-    $('.product-quantity input').on('input', function () {
-        const $row = $(this).closest('tr');
-        const quantity = parseInt($(this).val()) || 0;
-        const priceText = $row.find('.product-price .amount').text().replace('$', '');
-        const price = parseFloat(priceText) || 0;
-        const subtotal = quantity * price;
-
-        // Update subtotal
-        $row.find('.product-subtotal').text(`$${subtotal.toFixed(2)}`);
-
-        // Recalculate totals
-        updateTotals();
-    });
-
-    // Remove row when "X" is clicked
-    $('.delete-item-content a').on('click', function (e) {
-        e.preventDefault();
-        $(this).closest('tr').remove();
-        updateTotals();
-    });
-
-    // Function to recalculate totals
-    function updateTotals() {
-        let total = 0;
-        $('.product-subtotal').each(function () {
-            const value = parseFloat($(this).text().replace('$', '')) || 0;
-            total += value;
-        });
-
-        // Update all total values in the same structure you already have
-        $('.cart__total__tk li').eq(0).text(`$${total.toFixed(2)}`);
-        $('.cart__total__tk li').eq(1).text(`$${total.toFixed(2)}`);
-        $('.cart__total__amount span').eq(1).text(`$${total.toFixed(2)}`);
-    }
-
-    // Initial total calc
-    updateTotals();
-
-
-    // checkout 
-
-    const checkoutForm = document.getElementById('billingForm');
-    const shipToggle = document.getElementById('shipToggle');
-    const differentAddressField = document.getElementById('differentAddressField');
-    if(differentAddressField){
-      const differentAddressInput = differentAddressField.querySelector('input');
-
-      shipToggle.addEventListener('change', function () {
-          if (this.checked) {
-              differentAddressField.style.display = 'block';
-              differentAddressInput.setAttribute('required', 'required');
-          } else {
-              differentAddressField.style.display = 'none';
-              differentAddressInput.removeAttribute('required');
-              differentAddressInput.nextElementSibling.style.display = 'none';
-          }
-      });
-    }
-
-    if(checkoutForm){
-      checkoutForm.addEventListener('submit', function (e) {
-        let isValid = true;
-        
-        const inputs = form.querySelectorAll('input, select');
-        inputs.forEach(input => {
-            const errorMsg = input.nextElementSibling;
-            if (!input.checkValidity()) {
-                errorMsg.style.display = 'block';
-                isValid = false;
-            } else {
-                errorMsg.style.display = 'none';
-            }
-
-            // Special pattern validation
-            if (input.name === "phone" && input.value !== "" && !/^\d{10,}$/.test(input.value)) {
-                errorMsg.textContent = "Phone must be at least 10 digits.";
-                errorMsg.style.display = 'block';
-                isValid = false;
-            }
-        });
-
-        if (!isValid) {
-            e.preventDefault();
-        }
-    });
-    }
-
-    // register 
-    $(document).ready(function () {
-      // Initialize intl-tel-input first
-      const input = $("#mobile")[0];
-      const iti = window.intlTelInput(input, {
-          initialCountry: "auto",
-          geoIpLookup: callback => {
-              fetch("https://ipapi.co/json")
-                  .then(res => res.json())
-                  .then(data => callback(data.country_code))
-                  .catch(() => callback("us"));
-          },
-          utilsScript: "js/vendor/utils.js",
-          separateDialCode: true // This shows the country code separately
-      });
+  // Hide delete column header, content, and quantity buttons on load
+  $(".delete-item-header, .delete-item-content, .product-quantity .plus, .product-quantity .minus").hide();
   
-      $('#registerForm').on('submit', function (e) {
-          e.preventDefault();
-          let isValid = true;
+  // When "Update Cart" is clicked
+  $("#update-cart").on("click", function (e) {
+    e.preventDefault();
   
-          // Loop through each input and validate
-          $('input').each(function () {
-              let input = $(this);
-              let errorMsg = input.siblings('.error-msg');
+    // Enable quantity inputs
+    $(".product-quantity input").prop("disabled", false);
   
-              // Reset error message display
-              errorMsg.hide();
-  
-              // Overall input validity
-              if (!input[0].checkValidity()) {
-                  errorMsg.show();
-                  isValid = false;
-              }
-  
-              // Special validation for mobile phone number
-              if (input.attr('name') === 'mobileNumber') {
-                  const isPhoneValid = iti.isValidNumber();
-                  
-                  if (!isPhoneValid) {
-                      errorMsg.text("Please enter a valid phone number.").show();
-                      isValid = false;
-                  } else {
-                      // Update the input value with the full international number
-                      input.val(iti.getNumber()); // Merge country code with the number
-                  }
-              }
-  
-              // Password match validation
-              if (input.attr('name') === 'rePassword') {
-                  const password = $('input[name="Password"]').val();
-                  if (password !== input.val()) {
-                      errorMsg.text("Passwords must match.").show();
-                      isValid = false;
-                  }
-              }
-          });
-  
-          if (isValid) {
-              // Submit the form, including the full international phone number
-              this.submit();
-          }
-      });
+    // Show delete column and quantity buttons
+    $(".delete-item-header, .delete-item-content, .product-quantity .plus, .product-quantity .minus").show();
   });
   
+  // Live update subtotal and totals when quantity changes
+  $(".product-quantity input").on("input", function () {
+    const $row = $(this).closest("tr");
+    const quantity = parseInt($(this).val()) || 0;
+    const priceText = $row.find(".product-price .amount").text().replace("$", "");
+    const price = parseFloat(priceText) || 0;
+    const subtotal = quantity * price;
+  
+    // Update subtotal
+    $row.find(".product-subtotal").text(`$${subtotal.toFixed(2)}`);
+  
+    // Recalculate totals
+    updateTotals();
+  });
+  
+  // Click event for + button
+  $(".product-quantity .plus").on("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const $input = $(this).siblings(".quantity-input");
+    let quantity = parseInt($input.val()) || 0;
+    quantity++;
+    $input.val(quantity); // Update input value
+    $input.trigger("input"); // Trigger the input event to recalculate the subtotal
+  });
+  
+  // Click event for - button
+  $(".product-quantity .minus").on("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  
+    const $input = $(this).siblings(".quantity-input");
+    let quantity = parseInt($input.val()) || 0;
+    if (quantity > 1) {
+      // Prevent going below 1
+      quantity--;
+      $input.val(quantity); // Update input value
+      $input.trigger("input"); // Trigger the input event to recalculate the subtotal
+    }
+  });
+  
+  // Remove row when "X" is clicked
+  $(".delete-item-content a").on("click", function (e) {
+    e.preventDefault();
+    $(this).closest("tr").remove();
+    updateTotals();
+  });
+  
+  // Function to recalculate totals
+  function updateTotals() {
+    let total = 0;
+    $(".product-subtotal").each(function () {
+      const value = parseFloat($(this).text().replace("$", "")) || 0;
+      total += value;
+    });
+  
+    // Update all total values in the same structure you already have
+    $(".cart__total__tk li")
+      .eq(0)
+      .text(`$${total.toFixed(2)}`);
+    $(".cart__total__tk li")
+      .eq(1)
+      .text(`$${total.toFixed(2)}`);
+    $(".cart__total__amount span")
+      .eq(1)
+      .text(`$${total.toFixed(2)}`);
+  }
+  
+  // Initial total calc
+  updateTotals();
+  
+// checkout
+
+const checkoutForm = document.getElementById("billingForm");
+const shipToggle = document.getElementById("shipToggle");
+const differentAddressField = document.getElementById("differentAddressField");
+if (differentAddressField) {
+  const differentAddressInput = differentAddressField.querySelector("input");
+
+  shipToggle.addEventListener("change", function () {
+    if (this.checked) {
+      differentAddressField.style.display = "block";
+      differentAddressInput.setAttribute("required", "required");
+    } else {
+      differentAddressField.style.display = "none";
+      differentAddressInput.removeAttribute("required");
+      differentAddressInput.nextElementSibling.style.display = "none";
+    }
+  });
+}
+
+if (checkoutForm) {
+  checkoutForm.addEventListener("submit", function (e) {
+    let isValid = true;
+
+    const inputs = form.querySelectorAll("input, select");
+    inputs.forEach((input) => {
+      const errorMsg = input.nextElementSibling;
+      if (!input.checkValidity()) {
+        errorMsg.style.display = "block";
+        isValid = false;
+      } else {
+        errorMsg.style.display = "none";
+      }
+
+      // Special pattern validation
+      if (
+        input.name === "phone" &&
+        input.value !== "" &&
+        !/^\d{10,}$/.test(input.value)
+      ) {
+        errorMsg.textContent = "Phone must be at least 10 digits.";
+        errorMsg.style.display = "block";
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      e.preventDefault();
+    }
+  });
+}
+
+// register
+$(document).ready(function () {
+  // Initialize intl-tel-input first
+  const input = $("#mobile")[0];
+  const iti = window.intlTelInput(input, {
+    initialCountry: "auto",
+    geoIpLookup: (callback) => {
+      fetch("https://ipapi.co/json")
+        .then((res) => res.json())
+        .then((data) => callback(data.country_code))
+        .catch(() => callback("us"));
+    },
+    utilsScript: "js/vendor/utils.js",
+    separateDialCode: true, // This shows the country code separately
+  });
+
+  $("#registerForm").on("submit", function (e) {
+    e.preventDefault();
+    let isValid = true;
+
+    // Loop through each input and validate
+    $("input").each(function () {
+      let input = $(this);
+      let errorMsg = input.siblings(".error-msg");
+
+      // Reset error message display
+      errorMsg.hide();
+
+      // Overall input validity
+      if (!input[0].checkValidity()) {
+        errorMsg.show();
+        isValid = false;
+      }
+
+      // Special validation for mobile phone number
+      if (input.attr("name") === "mobileNumber") {
+        const isPhoneValid = iti.isValidNumber();
+
+        if (!isPhoneValid) {
+          errorMsg.text("Please enter a valid phone number.").show();
+          isValid = false;
+        } else {
+          // Update the input value with the full international number
+          input.val(iti.getNumber()); // Merge country code with the number
+        }
+      }
+
+      // Password match validation
+      if (input.attr("name") === "rePassword") {
+        const password = $('input[name="Password"]').val();
+        if (password !== input.val()) {
+          errorMsg.text("Passwords must match.").show();
+          isValid = false;
+        }
+      }
+    });
+
+    if (isValid) {
+      // Submit the form, including the full international phone number
+      this.submit();
+    }
+  });
+});
+
+/* counter in cart and , and product details  */
+
+$("#increase-btn").click(function () {
+  let qty = $("#qty").val();
+  // Ensure the value is a valid number and default to 0 if empty
+  if (qty === "" || isNaN(qty)) {
+    $("#qty").val(0);
+    qty = 0;
+  }
+  $("#qty").val(Number(qty) + 1); // Increment by 1
+});
+
+// Decrease button
+$("#decrease-btn").click(function () {
+  let qty = $("#qty").val();
+  // Ensure the value is a valid number and default to 0 if empty
+  if (qty === "" || isNaN(qty)) {
+    $("#qty").val(0);
+    qty = 0;
+  }
+  // Prevent decrementing if value is 0
+  if (qty > 0) {
+    $("#qty").val(Number(qty) - 1); // Decrement by 1
+  }
+});

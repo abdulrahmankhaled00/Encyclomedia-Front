@@ -350,7 +350,11 @@
                                       </ul>
                                     <div class="box-tocart d-flex">
                                         <span>Qty</span>
-                                        <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
+                                        <div class="position-relative">
+                                            <button class="counter-btn-decrease" id="decrease-btn">-</button>
+                                            <input id="qty" class="input-text qty" name="qty" value="1" title="Qty" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="1" />
+                                            <button class="counter-btn-increase" id="increase-btn">+</button>
+                                        </div>
                                         <div class="addtocart__actions">
                                             <button class="tocart" type="submit" title="Add to Cart">Add to
                                                 Cart
