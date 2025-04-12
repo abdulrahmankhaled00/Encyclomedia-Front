@@ -1167,3 +1167,59 @@ $("#decrease-btn").click(function () {
     $("#qty").val(Number(qty) - 1); // Decrement by 1
   }
 });
+
+
+/// profile 
+
+$(document).ready(function() {
+  // Store original values for cancel operation
+  let originalValues = {};
+  
+  // Edit button click handler
+  $("#editBtn").click(function() {
+      // Store original values
+      originalValues = {
+          firstName: $("#firstName").val(),
+          lastName: $("#lastName").val(),
+          mobileNumber: $("#mobileNumber").val(),
+          address: $("#address").val()
+      };
+      
+      // Make fields editable
+      $("#firstName, #lastName, #mobileNumber, #address").prop("readonly", false);
+      
+      // Show confirm and cancel buttons, hide edit button
+      $("#confirmBtn, #cancelBtn").show();
+      $("#editBtn").hide();
+  });
+  
+  // Cancel button click handler
+  $("#cancelBtn").click(function() {
+      // Restore original values
+      $("#firstName").val(originalValues.firstName);
+      $("#lastName").val(originalValues.lastName);
+      $("#mobileNumber").val(originalValues.mobileNumber);
+      $("#address").val(originalValues.address);
+      
+      // Make fields readonly again
+      $("#firstName, #lastName, #mobileNumber, #address").prop("readonly", true);
+      
+      // Hide confirm and cancel buttons, show edit button
+      $("#confirmBtn, #cancelBtn").hide();
+      $("#editBtn").show();
+  });
+  
+  // Confirm button click handler
+  $("#confirmBtn").click(function() {
+      // Here you would typically send the data to a server
+      // For this example, we'll just show an alert
+      alert("Profile information updated successfully!");
+      
+      // Make fields readonly again
+      $("#firstName, #lastName, #mobileNumber, #address").prop("readonly", true);
+      
+      // Hide confirm and cancel buttons, show edit button
+      $("#confirmBtn, #cancelBtn").hide();
+      $("#editBtn").show();
+  });
+})
