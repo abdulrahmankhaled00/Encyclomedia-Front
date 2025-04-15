@@ -882,7 +882,7 @@ function renderGridProducts() {
                 <li><a class="cart" href="${
                   product.link
                 }"><i class="bi bi-shopping-bag4"></i></a></li>
-                <li><a data-bs-toggle="modal" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
+                <li><a class="quickview modal-view detail-link" href="magazine-details.html"><i class="bi bi-search"></i></a></li>
 
               </ul>
             </div>
